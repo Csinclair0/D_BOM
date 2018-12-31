@@ -30,7 +30,7 @@ Number of lines (Log)
 % of UOH mix (ie % UOH1 vs UOH2)
 This is then all standard scaled.
 
-## SKu type
+## SKU type
  Sku Type1 one hot encoded
 
 ## Seasonality
@@ -46,4 +46,4 @@ This is then all standard scaled.
 Has the added component of each transformation, while using feature weight learning, it is meant to choose the most useful features to include.
 
 # Feature Weight learning
-This is based off the work from this research [paper](https://ieeexplore.ieee.org/abstract/document/993562). The attempt is to identify which features are important at making your data points better for clustering. The implementation here is tailored to this solution, but I have built a stand alone library as well titled "Feature_Weight_Learning", where you can find more information about it. In this application I only weight non-binary features(IE Skutypes) because the algorithm will natural gravitate towards choosing those. I also don't completely eliminate the variables it reduces, but instead reduce the weights by a given factor each time.
+This is based off the work from this research [paper](https://ieeexplore.ieee.org/abstract/document/993562). The attempt is to identify which features are important at making your data points better for clustering. The implementation here is tailored to this solution, but I have built a stand alone library as well titled "feature_learning", where you can find more information about it. In this application I only weight non-binary features(IE Skutypes) because the algorithm will natural gravitate towards choosing those. I also don't completely eliminate the variables it reduces, but instead reduce the weights by a given factor each time.

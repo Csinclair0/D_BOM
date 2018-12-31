@@ -13,11 +13,11 @@ import os
 import datetime as dt
 
 now = dt.datetime.now()
-id = str(now.day) + '_' + str(now.hour) + '_' + str(now.minute)
+id = str(now.day) + '_' + str(now.hour) + '_' + str(now.minute) + '_Output'
 data_loc = "C:/Users/csinclair/Desktop/Misc/DS/DataMining/D_BOM/Sample_data/"
 image_loc = "C:/Users/csinclair/Desktop/Misc/DS/DataMining/D_BOM/reports/output/" + id + '/'
 os.mkdir(image_loc)
-print('image location at {}'.format(image_loc))
+print('output location at {}'.format(image_loc))
 dataset = 'STEGS.txt'#input("which file would you like to use? ")
 
 delim = '|'#input("what is the delimiter? ")

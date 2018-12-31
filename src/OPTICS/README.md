@@ -9,18 +9,19 @@ To understand how it creates this plot you must understand a few definitions.  Y
 Core Distance- the minimum epsilon to make a distinct point a core point, given a finite MinPts parameter. <br>
 Reachability Distance- the reachability-distance of an object p with respect to another object o is the smallest distance such that p is directly density-reachable from o if o is a core object. It also cannot be smaller than the core distance. <br>
 
-![Core / Reachability Distance](/reports/figures/optics/Core_reach.png)
+![Core / Reachability Distance](/reports/figures/optics/Core_Reach.png)
 
 Although the MinPts parameter is used in these calculations, the idea is that it would not have much of an impact because all distances would scale at the roughly the same rate. 
 We will use these definitions to  create our reachability plot, which will then be used to extract the clusters. First, we start out by calculating the core distances on all data points in the set. Then we will loop through the entire data set, and update the reachability distances, processing each point only once. However, when we process a point we set in stone its location on the reachability plot, as well as its reachability distance. For that reason, we can only update reachability distances on points that have not been processed yet. The next data point chosen will be that which has the closest reachability distance. This is how the algorithm keeps clusters in the same location of the reachability plot. An example of the raw reachability plot from this project is shown below. 
 
-![OPTICS](/reports/figures/raw_reachability.png)
+![OPTICS](/reports/figures/optics/local_reach.png)
 
 
 The next step will be to extract the actual cluster labels from the plot. The most common way of doing this is by searching for "valleys" in the plot, using local minimums and maximum. A few more parameters  will come into play here, but they are pretty intuitive. The parameters are pretty much all directly related to how strong, large, or small you would like your clusters to be. In this module, the only parameter changed from the scikit-learn defaults was min_samples which was set to .03, to ensure all clusters were of significant size.
 
 This is an example of the reachability plot generated from this project.
 
+![OPTICS Example](/reports/figures/optics/optics_example.png)
 
 
 ## OPTICS-OF
