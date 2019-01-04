@@ -37,14 +37,14 @@ Once we have done this for every point, we will calculate the Outlier Factor. To
 
 The "local" component of OPTICS-OF is key to what separates it apart from other outlier detection methods, as it tries to account for the neighborhood of the specific option. It is also able to give it a relative outlier score, as opposed to just a binary value. An example of the local outlier factor, plotted in the same order as reachability, in shown below. All points with a score higher than two are shown in red on the 3D graph.
 
-![Local Outlier Graph](/reports/figures/LocalOutlierGraph.png)
+![Local Outlier Graph](/reports/figures/optics/LocalOutlierGraph.png)
 
-![Local Outlier 3D](/reports/figures/localoutlier3D.png)
+![Local Outlier 3D](/reports/figures/optics/localoutlier3D.png)
 
 
 ## Cluster Validation
 The Density Based Clustering Validation (DBCV) score was used to evaluate the effectiveness of the transformation and clustering.The process for calculating the density based clustering validation score is as follows.
-
+<br>
 for each cluster: <br>
    -computing the mutual reachability distance between all points using core distance and pairwise distances. The mutual reachability distance is the maximum between the core distances of both points and the distance between points.Many of the pre-computed items we used in clustering can be re-used here  <br>
    -creating a mutual reachability distance graph G <br>
@@ -56,6 +56,9 @@ for each cluster: <br>
    validity index function:
    ![vailidity function](reports/figures/OPTICS/validity.png)
 
+   DSPC - Density Separation of a pair of clusters
+   DSC - Density Sparseness
+
 
 then we use the scores of all clusters to determine the weighted average of all clusters.
-For more details on each of these functions, please read the document [here](/literature/DBCV.pdf)
+For more details on each of these functions, please read the document [here](/Literature/DBCV.pdf)

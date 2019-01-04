@@ -18,47 +18,45 @@ data_loc = "C:/Users/csinclair/Desktop/Misc/DS/DataMining/D_BOM/Sample_data/"
 image_loc = "C:/Users/csinclair/Desktop/Misc/DS/DataMining/D_BOM/reports/output/" + id + '/'
 os.mkdir(image_loc)
 print('output location at {}'.format(image_loc))
-dataset = 'STEGS.txt'#input("which file would you like to use? ")
+dataset = input("which file would you like to use? ")
 
-delim = '|'#input("what is the delimiter? ")
+delim = input("what is the delimiter? ")
+
+
 
 print("Loading {} dataset ".format(dataset))
 data = pd.read_csv(data_loc + dataset, delimiter = delim)
-
 data = DATA(data).clean()
-
 data.drop_duplicates(inplace = True)
-
 skudata = SKU(data)
-
 min_of = 2
-
 skuscores = pd.DataFrame(columns = ['Name', 'Perc_noise', 'Numclusters','Outliers' , 'DBCV'])
-
-sku_label_dict = {}
-sku_pca_dict = {}
-outliers = []
 iterator = 0
-
-figrows = 2
-figcols = 3
-#fig, axarray = plt.subplots(figrows, figcols, figsize=(figcols * 7, figrows * 7), subplot_kw={'projection': '3d'})
-print("Attempting SKU Stratification")
 sku = SKU(data)
-transformations = ['UOH',  'OCA', 'Seasonality', 'Type 1']#, 'Facility']
+transformations = ['UOH',  'OCA', 'Seasonality', 'Type 1', 'Facility']
+print("All possible Transformations {}".format(transformations))
+rmov = input("Would you like to remove any? Enter comma separated list or 0 to keep all. Do not enter any unrequired spaces. ")
+
+if rmov != '0':
+    rmoving = rmov.split(",")
+    for tran in rmoving:
+        try:
+            transformations.remove(tran)
+        except:
+            print("Transformation {} not found".format(tran))
+
 trancombos = [x for x in combinations(transformations, 2)] + [x for x in combinations(transformations, 3)] +  [x for x in combinations(transformations, 4)]  + ['custom']
 print(trancombos)
 weighted = {0: ', ', 1: ', Weighted'}
-store_weights = 'Yes'
 #SKU Transformation
 skuclust = {}
-
-
 textfile = open(image_loc + "output.md", "w")
 textfile.write("# Da Bom Text Output")
 textfile.write("\n <br> ")
 
+print("Attempting SKU Stratification")
 
+""" Main loop, first we loop through all transformation combos and append their outputs, and scores. Then we weight them and do the same"""
 for w in [0,1]:
     for tr in trancombos:
         iterator += 1
